@@ -3,13 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private string mainGameSceneName = "MainGame";
+    [SerializeField] private GameObject MenuButtons;
+    [SerializeField] private GameObject Levelauswahl;
 
     public void Play()
     {
-        if (!string.IsNullOrWhiteSpace(mainGameSceneName))
+        if (MenuButtons != null)
         {
-            SceneManager.LoadScene(mainGameSceneName);
+            MenuButtons.SetActive(false);
+        }
+        if (Levelauswahl != null)
+        {
+            Levelauswahl.SetActive(true);
         }
     }
 
@@ -20,5 +25,14 @@ public class MainMenuController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    // Diese Methode kann im Button-OnClick verwendet werden und nimmt den Szenennamen als Parameter
+    public void LoadSceneByName(string sceneName)
+    {
+        if (!string.IsNullOrWhiteSpace(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
