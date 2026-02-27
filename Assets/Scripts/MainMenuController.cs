@@ -6,6 +6,9 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject MenuButtons;
     [SerializeField] private GameObject Levelauswahl;
 
+    [Header("Options Panel")]
+    [SerializeField] private GameObject optionsPanel;
+
     public void Play()
     {
         if (MenuButtons != null)
@@ -18,6 +21,18 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void OpenOptionsPanel()
+    {
+        if (optionsPanel != null)
+            optionsPanel.SetActive(true);
+    }
+
+    public void CloseOptionsPanel()
+    {
+        if (optionsPanel != null)
+            optionsPanel.SetActive(false);
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
@@ -27,7 +42,6 @@ public class MainMenuController : MonoBehaviour
 #endif
     }
 
-    // Diese Methode kann im Button-OnClick verwendet werden und nimmt den Szenennamen als Parameter
     public void LoadSceneByName(string sceneName)
     {
         if (!string.IsNullOrWhiteSpace(sceneName))
